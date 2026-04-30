@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Backyard Renovation Blueprint — Client Conceptual Package v5</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold:#C8A96E; --gold-light:#E8D5A3; --dark:#0D1117; --dark2:#161B22;
+  --dark3:#21262D; --dark4:#30363D; --text:#E6EDF3; --text2:#8B949E;
+  --green:#2ECC71; --blue:#58A6FF; --orange:#F0883E; --red:#F85149; --purple:#BC8CFF;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden}
+
+/* ═══ PROGRESS BAR ═══ */
+#progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,var(--gold),var(--gold-light));width:0%;z-index:9999;transition:width .1s}
+
+/* ═══ NAV ═══ */
+nav{position:sticky;top:0;z-index:200;background:rgba(13,17,23,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(200,169,110,.2);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--gold);font-weight:700;letter-spacing:.04em;text-decoration:none;display:flex;align-items:center;gap:.5rem}
+.nav-links{display:flex;gap:.2rem;flex-wrap:wrap}
+.nav-links a{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--text2);text-decoration:none;padding:.35rem .7rem;border-radius:6px;transition:all .2s;letter-spacing:.04em;text-transform:uppercase}
+.nav-links a:hover{color:var(--gold);background:rgba(200,169,110,.1)}
+.nav-mobile-btn{display:none;background:none;border:none;color:var(--gold);font-size:1.3rem;cursor:pointer}
+@media(max-width:768px){.nav-links{display:none;position:absolute;top:60px;left:0;right:0;background:rgba(13,17,23,.98);flex-direction:column;padding:1rem;border-bottom:1px solid rgba(200,169,110,.2)}.nav-links.open{display:flex}.nav-mobile-btn{display:block}}
+
+/* ═══ HERO ═══ */
+.hero{min-height:100vh;background:linear-gradient(135deg,#0D1117 0%,#0F1B2D 35%,#121828 65%,#0A1520 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(200,169,110,.09) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(200,169,110,.3),transparent)}
+.hero-badge{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(200,169,110,.4);padding:.4rem 1.3rem;border-radius:100px;margin-bottom:2.5rem;background:rgba(200,169,110,.05);backdrop-filter:blur(8px)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,7vw,6rem);font-weight:900;line-height:1.05;background:linear-gradient(135deg,#fff 0%,#C8A96E 50%,#E8D5A3 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1.25rem}
+.hero-sub{font-size:1.05rem;color:var(--text2);max-width:580px;line-height:1.75;margin-bottom:3rem}
+.hero-stats{display:flex;gap:3.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:3rem}
+.stat-num{font-family:'Space Mono',monospace;font-size:2.2rem;font-weight:700;color:var(--gold);line-height:1}
+.stat-label{font-size:.72rem;color:var(--text2);text-transform:uppercase;letter-spacing:.12em;margin-top:.3rem}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#A07840);color:#0D1117;font-weight:700;font-size:.88rem;padding:.75rem 2rem;border-radius:8px;text-decoration:none;border:none;cursor:pointer;transition:all .2s;letter-spacing:.02em}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(200,169,110,.4)}
+.btn-outline{background:transparent;color:var(--text);font-weight:500;font-size:.88rem;padding:.75rem 2rem;border-radius:8px;text-decoration:none;border:1px solid var(--dark4);cursor:pointer;transition:all .2s}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.scroll-hint{position:absolute;bottom:2rem;font-family:'Space Mono',monospace;font-size:.62rem;color:var(--text2);letter-spacing:.15em;text-transform:uppercase;animation:bounce 2s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+/* ═══ SECTIONS ═══ */
+section{padding:5rem 2rem;max-width:1400px;margin:0 auto}
+.section-label{font-family:'Space Mono',monospace;font-size:.63rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,4vw,3.2rem);font-weight:700;line-height:1.1;margin-bottom:1rem}
+.section-desc{color:var(--text2);max-width:640px;line-height:1.8;margin-bottom:3rem;font-size:.97rem}
+.divider{height:1px;background:linear-gradient(to right,transparent,rgba(200,169,110,.25),transparent);margin:0 2rem}
+.band-dark2{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)}
+.band-dark{background:var(--dark)}
+
+/* ═══ TAB NAV ═══ */
+.tab-nav{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.tab-btn{font-family:'Space Mono',monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;padding:.45rem 1.1rem;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:transparent;color:var(--text2);cursor:pointer;transition:all .2s}
+.tab-btn.active,.tab-btn:hover{background:rgba(200,169,110,.12);border-color:var(--gold);color:var(--gold)}
+
+/* ═══ PHOTO GALLERY ═══ */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:.75rem}
+.photo-card{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:3/4;cursor:pointer;border:1px solid rgba(255,255,255,.07);transition:transform .3s,box-shadow .3s}
+.photo-card:hover{transform:scale(1.03);box-shadow:0 12px 40px rgba(0,0,0,.55);z-index:2}
+.photo-card img{width:100%;height:100%;object-fit:cover;display:block}
+.photo-zone-badge{position:absolute;top:.5rem;left:.5rem;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.05em;text-transform:uppercase;padding:.22rem .55rem;border-radius:4px;background:rgba(0,0,0,.78);color:var(--gold);backdrop-filter:blur(6px)}
+.photo-num-badge{position:absolute;bottom:.5rem;right:.5rem;font-family:'Space Mono',monospace;font-size:.55rem;padding:.18rem .45rem;border-radius:4px;background:rgba(0,0,0,.65);color:rgba(255,255,255,.5);backdrop-filter:blur(4px)}
+.no-photos{text-align:center;padding:4rem 2rem;color:var(--text2);font-family:'Space Mono',monospace;font-size:.8rem;grid-column:1/-1;border:1px dashed rgba(200,169,110,.2);border-radius:12px}
+.no-photos p:first-child{font-size:2.5rem;margin-bottom:.75rem}
+.gallery-count{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--text2);margin-bottom:1rem;letter-spacing:.05em}
+
+/* ═══ LIGHTBOX ═══ */
+#lightbox{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.97);backdrop-filter:blur(12px);align-items:center;justify-content:center;flex-direction:column}
+#lightbox.active{display:flex}
+#lightbox img{max-height:82vh;max-width:92vw;border-radius:8px;box-shadow:0 0 80px rgba(0,0,0,.8)}
+#lb-close{position:absolute;top:1.5rem;right:1.5rem;font-size:2rem;color:#fff;cursor:pointer;background:none;border:none;font-family:'Space Mono',monospace;z-index:10;line-height:1;opacity:.7;transition:opacity .2s}
+#lb-close:hover{opacity:1;color:var(--gold)}
+#lb-nav{display:flex;gap:2rem;margin-top:1.25rem;align-items:center}
+#lb-prev,#lb-next{background:rgba(200,169,110,.15);border:1px solid rgba(200,169,110,.3);color:var(--gold);font-family:'Space Mono',monospace;font-size:.75rem;padding:.4rem 1rem;border-radius:6px;cursor:pointer;transition:all .2s;letter-spacing:.08em;text-transform:uppercase}
+#lb-prev:hover,#lb-next:hover{background:rgba(200,169,110,.25)}
+#lb-caption{color:var(--text2);font-family:'Space Mono',monospace;font-size:.75rem;letter-spacing:.05em}
+#lb-counter{color:rgba(200,169,110,.6);font-family:'Space Mono',monospace;font-size:.7rem}
+
+/* ═══ ANALYSIS CARDS ═══ */
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem;margin-top:2rem}
+.summary-card{background:var(--dark2);border-radius:12px;border:1px solid rgba(255,255,255,.07);padding:1.5rem;transition:border-color .2s,transform .2s}
+.summary-card:hover{border-color:rgba(200,169,110,.3);transform:translateY(-2px)}
+.summary-icon{font-size:1.8rem;margin-bottom:.75rem}
+.summary-card-title{font-size:.95rem;font-weight:600;margin-bottom:.4rem}
+.summary-card-desc{font-size:.82rem;color:var(--text2);line-height:1.65}
+
+/* ═══ FLOORPLANS ═══ */
+.floorplan-wrap{background:var(--dark2);border-radius:16px;border:1px solid rgba(200,169,110,.2);padding:2rem;margin-bottom:2rem}
+.floorplan-title{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--text2);text-transform:uppercase;letter-spacing:.15em;margin-bottom:1.5rem}
+.fp-svg-wrap{width:100%;overflow-x:auto}
+.fp-svg-wrap svg{display:block;margin:0 auto}
+
+/* ═══ ZONES TABLE ═══ */
+.zones-table-wrap{overflow-x:auto;margin-top:2rem}
+table{width:100%;border-collapse:collapse;background:var(--dark2);border-radius:12px;overflow:hidden}
+thead tr{background:rgba(200,169,110,.1)}
+th{font-family:'Space Mono',monospace;font-size:.63rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold);padding:1rem 1.2rem;text-align:left}
+td{padding:.9rem 1.2rem;font-size:.87rem;color:var(--text2);border-bottom:1px solid rgba(255,255,255,.04)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
+.badge{display:inline-block;padding:.2rem .65rem;border-radius:4px;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.05em;text-transform:uppercase;font-weight:700}
+.bg{background:rgba(46,204,113,.15);color:var(--green)}
+.bo{background:rgba(240,136,62,.15);color:var(--orange)}
+.bb{background:rgba(88,166,255,.15);color:var(--blue)}
+.bp{background:rgba(188,140,255,.15);color:var(--purple)}
+
+/* ═══ TIERS ═══ */
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:2rem}
+.tier-card{background:var(--dark2);border-radius:16px;border:1px solid rgba(255,255,255,.08);padding:2rem;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+.tier-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.tier-card.featured{border-color:var(--gold);background:linear-gradient(135deg,rgba(200,169,110,.08) 0%,var(--dark2) 100%)}
+.tier-card.featured::before{content:'RECOMMENDED';position:absolute;top:1rem;right:1rem;font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;padding:.2rem .65rem;background:var(--gold);color:var(--dark);border-radius:4px;font-weight:700}
+.tier-label{font-family:'Space Mono',monospace;font-size:.63rem;text-transform:uppercase;letter-spacing:.2em;color:var(--text2);margin-bottom:.5rem}
+.tier-name{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;margin-bottom:.3rem}
+.tier-price{font-family:'Space Mono',monospace;font-size:1.3rem;color:var(--gold);margin-bottom:1.5rem}
+.tier-features{list-style:none;margin-bottom:1.5rem;flex:1}
+.tier-features li{font-size:.88rem;color:var(--text2);padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:flex-start;gap:.6rem;line-height:1.4}
+.tier-features li::before{content:'›';color:var(--gold);font-size:1.1rem;flex-shrink:0;margin-top:-.05rem}
+.tier-features li.in{color:var(--text)}
+.tier-features li.out{color:rgba(255,255,255,.2)}
+.tier-features li.out::before{content:'—';color:rgba(255,255,255,.15)}
+.tier-note{font-size:.82rem;color:var(--text2);line-height:1.65;border-top:1px solid rgba(255,255,255,.06);padding-top:1rem}
+
+/* ═══ COST ESTIMATOR ═══ */
+.estimator{background:var(--dark2);border-radius:16px;border:1px solid rgba(200,169,110,.2);padding:2rem;margin-top:2rem}
+.estimator h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--gold);margin-bottom:.5rem}
+.estimator-desc{font-size:.85rem;color:var(--text2);margin-bottom:1.5rem}
+.estimator-items{display:flex;flex-direction:column;gap:.75rem;margin-bottom:2rem}
+.est-item{display:flex;align-items:center;gap:1rem;padding:.75rem;background:var(--dark3);border-radius:8px;border:1px solid rgba(255,255,255,.05)}
+.est-check{width:18px;height:18px;border-radius:4px;accent-color:var(--gold);cursor:pointer;flex-shrink:0}
+.est-label{flex:1;font-size:.88rem}
+.est-range{font-family:'Space Mono',monospace;font-size:.75rem;color:var(--green);white-space:nowrap}
+.est-total-bar{background:var(--dark3);border-radius:10px;padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center;border:1px solid rgba(200,169,110,.25)}
+.est-total-label{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text2)}
+.est-total-val{font-family:'Space Mono',monospace;font-size:1.4rem;color:var(--gold);font-weight:700}
+
+/* ═══ MATERIALS ═══ */
+.materials-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-top:2rem}
+.mat-card{background:var(--dark2);border-radius:12px;border:1px solid rgba(255,255,255,.08);padding:1.5rem;transition:border-color .2s,transform .2s}
+.mat-card:hover{border-color:rgba(200,169,110,.4);transform:translateY(-2px)}
+.mat-category{font-family:'Space Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);margin-bottom:.5rem}
+.mat-name{font-size:1rem;font-weight:600;margin-bottom:.5rem}
+.mat-desc{font-size:.84rem;color:var(--text2);line-height:1.65}
+.mat-cost{margin-top:1rem;font-family:'Space Mono',monospace;font-size:.78rem;color:var(--text2)}
+.mat-cost span{color:var(--green)}
+
+/* ═══ PHASES TIMELINE ═══ */
+.timeline{position:relative;padding-left:2.25rem;margin-top:2rem}
+.timeline::before{content:'';position:absolute;left:.25rem;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--gold),transparent)}
+.timeline-item{position:relative;margin-bottom:2rem;padding:1.75rem;background:var(--dark2);border-radius:12px;border:1px solid rgba(255,255,255,.06);border-left:3px solid var(--gold)}
+.timeline-dot{position:absolute;left:-2.4rem;top:1.75rem;width:10px;height:10px;border-radius:50%;background:var(--gold);border:2px solid var(--dark)}
+.phase-num{font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gold);text-transform:uppercase;letter-spacing:.2em;margin-bottom:.3rem}
+.phase-title{font-size:1.1rem;font-weight:600;margin-bottom:.6rem}
+.phase-desc{font-size:.88rem;color:var(--text2);line-height:1.75}
+.phase-cost{margin-top:.85rem;font-family:'Space Mono',monospace;font-size:.8rem;color:var(--green)}
+.phase-duration{margin-top:.35rem;font-family:'Space Mono',monospace;font-size:.75rem;color:var(--blue)}
+
+/* ═══ NOTES ═══ */
+.notes-box{background:linear-gradient(135deg,rgba(200,169,110,.05) 0%,rgba(88,166,255,.05) 100%);border:1px solid rgba(200,169,110,.22);border-radius:16px;padding:2rem;margin-top:2rem}
+.notes-box h3{font-family:'Playfair Display',serif;font-size:1.35rem;margin-bottom:1rem;color:var(--gold)}
+.notes-box p{color:var(--text2);line-height:1.85;margin-bottom:.75rem;font-size:.9rem}
+.notes-box p:last-child{margin-bottom:0}
+.check-item{color:var(--text2);line-height:1.85;margin-bottom:.65rem;font-size:.9rem;display:flex;gap:.6rem;align-items:flex-start}
+.check-item strong{color:var(--text)}
+
+/* ═══ NEXT STEPS CARDS ═══ */
+.next-steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:2rem}
+.next-card{background:var(--dark2);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:1.5rem;transition:transform .2s,border-color .2s}
+.next-card:hover{transform:translateY(-2px);border-color:rgba(200,169,110,.25)}
+.next-card-icon{font-size:1.5rem;margin-bottom:.6rem}
+.next-card-title{font-weight:600;margin-bottom:.4rem;font-size:.95rem}
+.next-card-desc{font-size:.83rem;color:var(--text2);line-height:1.65}
+
+/* ═══ PRINT ═══ */
+@media print{#progress-bar,nav,.hero-ctas,.scroll-hint,.tab-nav,#lightbox,.estimator{display:none!important}section{padding:2rem 1rem}body{background:#fff;color:#000}}
+
+/* ═══ SCROLL ANIMATION ═══ */
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">◈ Blueprint Co.</a>
+  <button class="nav-mobile-btn" onclick="toggleMobileNav()" aria-label="Menu">☰</button>
+  <div class="nav-links" id="nav-links">
+    <a href="#photos" onclick="closeMobileNav()">Photos</a>
+    <a href="#analysis" onclick="closeMobileNav()">Analysis</a>
+    <a href="#floorplan" onclick="closeMobileNav()">Floorplan</a>
+    <a href="#zones" onclick="closeMobileNav()">Zones</a>
+    <a href="#tiers" onclick="closeMobileNav()">Tiers</a>
+    <a href="#estimator" onclick="closeMobileNav()">Estimator</a>
+    <a href="#materials" onclick="closeMobileNav()">Materials</a>
+    <a href="#phases" onclick="closeMobileNav()">Phases</a>
+    <a href="#notes" onclick="closeMobileNav()">Notes</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Confidential Client Document · Conceptual Blueprint · v5</div>
+  <h1>Backyard<br>Transformation</h1>
+  <p class="hero-sub">A full-scope renovation concept — from current state analysis to phased design proposals at every budget tier. Greater Phoenix Area Residential.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">55</div><div class="stat-label">Site Photos</div></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Design Tiers</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Feature Zones</div></div>
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">Build Phases</div></div>
+  </div>
+  <div class="hero-ctas">
+    <a href="#floorplan" class="btn-gold">View Floorplan</a>
+    <a href="#tiers" class="btn-outline">See Pricing Tiers</a>
+  </div>
+  <div class="scroll-hint">↓ scroll to explore</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ PHOTOS ═══ -->
+<div class="band-dark2" id="photos">
+<section class="fade-in">
+  <div class="section-label">01 — Existing Conditions</div>
+  <h2 class="section-title">Site Photo Survey</h2>
+  <p class="section-desc">55 photos taken across all zones of the property. Click any photo to expand. Use the tabs to filter by area. <em>Photos will display here once embedded — share your 55 HEIC/JPG images in the next session.</em></p>
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="filterPhotos('all',this)">All (55)</button>
+    <button class="tab-btn" onclick="filterPhotos('main',this)">Main Yard</button>
+    <button class="tab-btn" onclick="filterPhotos('patio',this)">Patio / House</button>
+    <button class="tab-btn" onclick="filterPhotos('side',this)">Side Yard</button>
+    <button class="tab-btn" onclick="filterPhotos('back',this)">Back Zone</button>
+  </div>
+  <div class="gallery-count" id="gallery-count"></div>
+  <div class="gallery-grid" id="photo-gallery">
+    <div class="no-photos">
+      <p>📷</p>
+      <p>Photo gallery will appear here once photos are embedded.<br>Drop the 55 site images into the next session to generate the full gallery.</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════ ANALYSIS ═══ -->
+<div class="band-dark" id="analysis">
+<section class="fade-in">
+  <div class="section-label">02 — Site Analysis</div>
+  <h2 class="section-title">What We're Working With</h2>
+  <p class="section-desc">Key conditions identified from the 55-photo survey and client consultation transcript.</p>
+  <div class="summary-grid">
+    <div class="summary-card"><div class="summary-icon">🏗️</div><div class="summary-card-title">CMU Block Walls</div><div class="summary-card-desc">Solid concrete masonry unit perimeter walls on all sides. Good structural baseline. Paint refresh recommended for all sides.</div></div>
+    <div class="summary-card"><div class="summary-icon">🪨</div><div class="summary-card-title">Decomposed Granite</div><div class="summary-card-desc">Most of the yard is DG and loose rock. To be cleared, regraded, and replaced per selected design tier.</div></div>
+    <div class="summary-card"><div class="summary-icon">🛁</div><div class="summary-card-title">Hot Tub (Remove)</div><div class="summary-card-desc">Freestanding hot tub in middle of main yard. Client wants it removed — opens up prime central real estate for gazebo zone.</div></div>
+    <div class="summary-card"><div class="summary-icon">🌳</div><div class="summary-card-title">Existing Trees</div><div class="summary-card-desc">Several mature desert trees. 2–3 to be preserved. One dead tree (mistletoe damage confirmed) to be removed.</div></div>
+    <div class="summary-card"><div class="summary-icon">🏠</div><div class="summary-card-title">Concrete Patio</div><div class="summary-card-desc">Existing patio slab off back door. Starting point for extended kitchen/dining zone. Gas + electric rough-in here.</div></div>
+    <div class="summary-card"><div class="summary-icon">🚰</div><div class="summary-card-title">Drainage Issue</div><div class="summary-card-desc">Visible drainage concern near driveway-adjacent wall. French drain or decorative drain channel recommended in Phase 1.</div></div>
+    <div class="summary-card"><div class="summary-icon">🌵</div><div class="summary-card-title">Pomegranate Plant</div><div class="summary-card-desc">Client: do NOT remove. Repot into large decorative planter and reposition in yard as featured accent piece.</div></div>
+    <div class="summary-card"><div class="summary-icon">🪵</div><div class="summary-card-title">Railroad Ties</div><div class="summary-card-desc">Old railroad ties in side/back areas. All removed in Phase 1 demo and cleanup. No reuse planned.</div></div>
+    <div class="summary-card"><div class="summary-icon">🏍️</div><div class="summary-card-title">Side Gate / Moto Access</div><div class="summary-card-desc">Client wants side yard enclosed with gate to store electric motorcycle and trash cans. HOA check required first.</div></div>
+    <div class="summary-card"><div class="summary-icon">🔌</div><div class="summary-card-title">Disconnected Fish Pond</div><div class="summary-card-desc">Old electrical stub-out from removed fish pond. Can be rerouted to serve outdoor kitchen zone. Verify before trenching.</div></div>
+    <div class="summary-card"><div class="summary-icon">🐍</div><div class="summary-card-title">CMU Pest Barrier</div><div class="summary-card-desc">CMU block walls have 2ft cement footer — snakes and pests unlikely to enter. Once cleaned, only 2 open sides to manage.</div></div>
+    <div class="summary-card"><div class="summary-icon">🎨</div><div class="summary-card-title">Aesthetic Direction</div><div class="summary-card-desc">Warm earth tones (red/brown rock, not grey). Arizona desert-modern. Clean, low-maintenance. Green from turf. Evening lighting key.</div></div>
+  </div>
+</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════ FLOORPLAN ═══ -->
+<div class="band-dark2" id="floorplan">
+<section class="fade-in">
+  <div class="section-label">03 — Spatial Layout</div>
+  <h2 class="section-title">Wireframe Site Plan</h2>
+  <p class="section-desc">Conceptual overhead layout based on photo analysis. Actual measurements pending site visit. Toggle current vs proposed below.</p>
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showFP('current',this)">Current State</button>
+    <button class="tab-btn" onclick="showFP('proposed',this)">Proposed Layout</button>
+  </div>
+
+  <!-- CURRENT STATE SVG -->
+  <div id="fp-current" class="floorplan-wrap">
+    <div class="floorplan-title">CURRENT STATE — WIREFRAME RECONSTRUCTION (EST. 80ft × 55ft)</div>
+    <div class="fp-svg-wrap">
+<svg width="860" height="560" viewBox="0 0 860 560" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">
+  <defs>
+    <pattern id="g1" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M30 0L0 0 0 30" fill="none" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="860" height="560" fill="#161B22"/>
+  <rect width="860" height="560" fill="url(#g1)"/>
+  <!-- boundary -->
+  <rect x="50" y="30" width="760" height="490" fill="none" stroke="#C8A96E" stroke-width="2" stroke-dasharray="8 4" rx="4"/>
+  <!-- house -->
+  <rect x="220" y="350" width="420" height="140" fill="#21262D" stroke="#8B949E" stroke-width="1.5" rx="4"/>
+  <text x="430" y="415" text-anchor="middle" font-family="Space Mono,monospace" font-size="13" fill="#8B949E" font-weight="700">HOUSE</text>
+  <text x="430" y="433" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#555">Back door / sliding glass</text>
+  <!-- patio slab -->
+  <rect x="300" y="310" width="260" height="45" fill="#21262D" stroke="#58A6FF" stroke-width="1.5" rx="3"/>
+  <text x="430" y="338" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#58A6FF">EXISTING PATIO SLAB</text>
+  <!-- hot tub REMOVE -->
+  <rect x="370" y="225" width="80" height="78" fill="rgba(248,81,73,.1)" stroke="#F85149" stroke-width="1.5" stroke-dasharray="5 3" rx="6"/>
+  <text x="410" y="260" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#F85149">HOT TUB</text>
+  <text x="410" y="276" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#F85149">[REMOVE]</text>
+  <!-- main yard DG -->
+  <rect x="90" y="50" width="680" height="255" fill="rgba(200,169,110,.02)" stroke="rgba(200,169,110,.12)" stroke-width="1" rx="4"/>
+  <text x="430" y="75" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="rgba(200,169,110,.4)" letter-spacing="2">MAIN YARD — DG / LOOSE ROCK / WEEDS</text>
+  <!-- dead tree REMOVE -->
+  <circle cx="145" cy="155" r="24" fill="rgba(248,81,73,.08)" stroke="#F85149" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="145" y="151" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#F85149">DEAD</text>
+  <text x="145" y="163" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#F85149">TREE ✕</text>
+  <!-- keep trees -->
+  <circle cx="630" cy="110" r="28" fill="rgba(46,204,113,.08)" stroke="#2ECC71" stroke-width="1.5"/>
+  <text x="630" y="107" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#2ECC71">TREE</text>
+  <text x="630" y="120" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#2ECC71">KEEP ✓</text>
+  <circle cx="740" cy="185" r="24" fill="rgba(46,204,113,.08)" stroke="#2ECC71" stroke-width="1.5"/>
+  <text x="740" y="182" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#2ECC71">TREE</text>
+  <text x="740" y="195" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#2ECC71">KEEP ✓</text>
+  <circle cx="510" cy="100" r="20" fill="rgba(46,204,113,.08)" stroke="#2ECC71" stroke-width="1.5"/>
+  <text x="510" y="97" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#2ECC71">TREE</text>
+  <text x="510" y="109" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#2ECC71">KEEP ✓</text>
+  <!-- pomegranate -->
+  <circle cx="280" cy="160" r="18" fill="rgba(188,140,255,.1)" stroke="#BC8CFF" stroke-width="1" stroke-dasharray="4 2"/>
+  <text x="280" y="156" text-anchor="middle" font-family="Space Mono,monospace" font-size="7.5" fill="#BC8CFF">POME-</text>
+  <text x="280" y="168" text-anchor="middle" font-family="Space Mono,monospace" font-size="7.5" fill="#BC8CFF">GRANATE</text>
+  <!-- railroad ties REMOVE -->
+  <rect x="110" y="270" width="30" height="10" fill="rgba(240,136,62,.3)" stroke="#F0883E" stroke-width="1" rx="2" transform="rotate(-12 125 275)"/>
+  <rect x="148" y="280" width="28" height="10" fill="rgba(240,136,62,.3)" stroke="#F0883E" stroke-width="1" rx="2"/>
+  <text x="148" y="305" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#F0883E">RR TIES [REMOVE]</text>
+  <!-- side yards -->
+  <rect x="50" y="50" width="40" height="470" fill="rgba(88,166,255,.03)" stroke="rgba(88,166,255,.2)" stroke-width="1" rx="2"/>
+  <text x="70" y="300" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="rgba(88,166,255,.5)" transform="rotate(-90 70 300)">SIDE YARD — GATE / MOTO STORAGE</text>
+  <rect x="770" y="50" width="40" height="470" fill="rgba(88,166,255,.03)" stroke="rgba(88,166,255,.2)" stroke-width="1" rx="2"/>
+  <text x="790" y="300" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="rgba(88,166,255,.4)" transform="rotate(90 790 300)">RIGHT SIDE YARD</text>
+  <!-- drain warning -->
+  <circle cx="95" cy="415" r="15" fill="rgba(240,136,62,.12)" stroke="#F0883E" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <text x="95" y="440" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#F0883E">DRAIN!</text>
+  <!-- scale bar -->
+  <line x1="640" y1="530" x2="790" y2="530" stroke="#8B949E" stroke-width="1.5"/>
+  <line x1="640" y1="524" x2="640" y2="536" stroke="#8B949E" stroke-width="1.5"/>
+  <line x1="790" y1="524" x2="790" y2="536" stroke="#8B949E" stroke-width="1.5"/>
+  <text x="715" y="548" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#8B949E">~20 ft (est.)</text>
+  <!-- legend -->
+  <rect x="60" y="498" width="290" height="48" rx="6" fill="rgba(13,17,23,.85)" stroke="rgba(200,169,110,.15)" stroke-width="1"/>
+  <text x="80" y="517" font-family="Space Mono,monospace" font-size="8" fill="#8B949E">LEGEND:</text>
+  <circle cx="140" cy="513" r="5" fill="rgba(46,204,113,.15)" stroke="#2ECC71" stroke-width="1"/>
+  <text x="150" y="517" font-family="Space Mono,monospace" font-size="8" fill="#2ECC71">KEEP</text>
+  <circle cx="195" cy="513" r="5" fill="rgba(248,81,73,.15)" stroke="#F85149" stroke-width="1"/>
+  <text x="205" y="517" font-family="Space Mono,monospace" font-size="8" fill="#F85149">REMOVE</text>
+  <circle cx="262" cy="513" r="5" fill="rgba(240,136,62,.15)" stroke="#F0883E" stroke-width="1"/>
+  <text x="272" y="517" font-family="Space Mono,monospace" font-size="8" fill="#F0883E">ATTENTION</text>
+  <text x="70" y="538" font-family="Space Mono,monospace" font-size="7.5" fill="#555">Conceptual · Pending field measurement</text>
+</svg>
+    </div>
+  </div>
+
+  <!-- PROPOSED LAYOUT SVG -->
+  <div id="fp-proposed" class="floorplan-wrap" style="display:none">
+    <div class="floorplan-title">PROPOSED LAYOUT — FULL RENOVATION CONCEPT (EST. 80ft × 55ft)</div>
+    <div class="fp-svg-wrap">
+<svg width="860" height="560" viewBox="0 0 860 560" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">
+  <defs>
+    <pattern id="g2" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M30 0L0 0 0 30" fill="none" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+    </pattern>
+    <pattern id="turf-pat" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="rgba(46,204,113,.07)"/>
+      <line x1="0" y1="5" x2="10" y2="5" stroke="rgba(46,204,113,.18)" stroke-width="1"/>
+    </pattern>
+    <pattern id="paver-pat" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="rgba(200,169,110,.04)"/>
+      <rect x="1" y="1" width="18" height="18" fill="none" stroke="rgba(200,169,110,.22)" stroke-width=".5"/>
+    </pattern>
+  </defs>
+  <rect width="860" height="560" fill="#161B22"/>
+  <rect width="860" height="560" fill="url(#g2)"/>
+  <!-- boundary -->
+  <rect x="50" y="30" width="760" height="490" fill="none" stroke="#C8A96E" stroke-width="2" rx="4"/>
+  <text x="430" y="20" text-anchor="middle" font-family="Space Mono,monospace" font-size="11" fill="#C8A96E" letter-spacing="3">PROPOSED RENOVATION LAYOUT</text>
+  <!-- house -->
+  <rect x="220" y="350" width="420" height="140" fill="#21262D" stroke="#8B949E" stroke-width="1.5" rx="4"/>
+  <text x="430" y="425" text-anchor="middle" font-family="Space Mono,monospace" font-size="13" fill="#8B949E" font-weight="700">HOUSE</text>
+  <!-- extended paver patio -->
+  <rect x="170" y="290" width="520" height="65" fill="url(#paver-pat)" stroke="#C8A96E" stroke-width="1.5" rx="4"/>
+  <text x="430" y="326" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#C8A96E">EXTENDED PAVER PATIO</text>
+  <text x="430" y="340" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="rgba(200,169,110,.55)">travertine or stamped concrete · gas / electric rough-in</text>
+  <!-- outdoor kitchen -->
+  <rect x="605" y="205" width="115" height="88" fill="rgba(240,136,62,.1)" stroke="#F0883E" stroke-width="1.5" rx="4"/>
+  <text x="662" y="240" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#F0883E">OUTDOOR</text>
+  <text x="662" y="253" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#F0883E">KITCHEN</text>
+  <text x="662" y="266" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#F0883E" opacity=".7">BBQ + BAR</text>
+  <!-- GAZEBO main feature -->
+  <rect x="295" y="150" width="180" height="135" fill="rgba(200,169,110,.07)" stroke="#C8A96E" stroke-width="2.5" rx="8"/>
+  <text x="385" y="212" text-anchor="middle" font-family="Space Mono,monospace" font-size="12" fill="#C8A96E" font-weight="700" letter-spacing="1">GAZEBO</text>
+  <text x="385" y="228" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#C8A96E" opacity=".65">metal louvered · 16×16ft est.</text>
+  <!-- gazebo corner dots -->
+  <circle cx="300" cy="155" r="4.5" fill="#C8A96E" opacity=".8"/>
+  <circle cx="470" cy="155" r="4.5" fill="#C8A96E" opacity=".8"/>
+  <circle cx="300" cy="280" r="4.5" fill="#C8A96E" opacity=".8"/>
+  <circle cx="470" cy="280" r="4.5" fill="#C8A96E" opacity=".8"/>
+  <!-- turf / kids play -->
+  <rect x="90" y="150" width="190" height="195" fill="url(#turf-pat)" stroke="#2ECC71" stroke-width="1.5" rx="4"/>
+  <text x="185" y="242" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#2ECC71">TURF</text>
+  <text x="185" y="258" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#2ECC71" opacity=".7">KIDS PLAY ZONE</text>
+  <!-- swing corner -->
+  <circle cx="685" cy="180" r="45" fill="rgba(188,140,255,.08)" stroke="#BC8CFF" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <text x="685" y="176" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#BC8CFF">SWING</text>
+  <text x="685" y="191" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#BC8CFF">CORNER</text>
+  <!-- keep trees -->
+  <circle cx="130" cy="88" r="26" fill="rgba(46,204,113,.1)" stroke="#2ECC71" stroke-width="1.5"/>
+  <text x="130" y="84" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#2ECC71">🌳 KEEP</text>
+  <circle cx="568" cy="92" r="22" fill="rgba(46,204,113,.1)" stroke="#2ECC71" stroke-width="1.5"/>
+  <text x="568" y="89" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#2ECC71">🌳 KEEP</text>
+  <circle cx="740" cy="128" r="26" fill="rgba(46,204,113,.1)" stroke="#2ECC71" stroke-width="1.5"/>
+  <text x="740" y="124" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#2ECC71">🌳 KEEP</text>
+  <!-- pomegranate planter (relocated) -->
+  <rect x="477" y="176" width="52" height="52" fill="rgba(188,140,255,.1)" stroke="#BC8CFF" stroke-width="1.5" rx="26"/>
+  <text x="503" y="199" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#BC8CFF">POME</text>
+  <text x="503" y="212" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#BC8CFF">POT</text>
+  <!-- desert rock band top -->
+  <rect x="90" y="46" width="680" height="85" fill="rgba(200,169,110,.03)" stroke="rgba(200,169,110,.12)" stroke-width="1" rx="4"/>
+  <text x="430" y="94" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="rgba(200,169,110,.45)">DESERT ROCK + ACCENT BOULDERS + DRIP PLANTS</text>
+  <!-- side gate left -->
+  <rect x="50" y="50" width="40" height="470" fill="rgba(88,166,255,.04)" stroke="rgba(88,166,255,.25)" stroke-width="1" rx="2"/>
+  <rect x="52" y="360" width="36" height="60" fill="rgba(88,166,255,.14)" stroke="#58A6FF" stroke-width="1.5" rx="2"/>
+  <text x="70" y="275" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#58A6FF" transform="rotate(-90 70 275)">SIDE GATE — MOTO + TRASH</text>
+  <!-- right side -->
+  <rect x="770" y="50" width="40" height="470" fill="rgba(88,166,255,.03)" stroke="rgba(88,166,255,.15)" stroke-width="1" rx="2"/>
+  <!-- lighting path dots -->
+  <circle cx="186" cy="292" r="3.5" fill="#F0883E" opacity=".8"/>
+  <circle cx="256" cy="292" r="3.5" fill="#F0883E" opacity=".8"/>
+  <circle cx="326" cy="292" r="3.5" fill="#F0883E" opacity=".8"/>
+  <circle cx="396" cy="292" r="3.5" fill="#F0883E" opacity=".8"/>
+  <circle cx="466" cy="292" r="3.5" fill="#F0883E" opacity=".8"/>
+  <circle cx="536" cy="292" r="3.5" fill="#F0883E" opacity=".8"/>
+  <circle cx="606" cy="292" r="3.5" fill="#F0883E" opacity=".8"/>
+  <text x="430" y="282" text-anchor="middle" font-family="Space Mono,monospace" font-size="7" fill="#F0883E" opacity=".55">● LANDSCAPE LIGHTING POINTS</text>
+  <!-- french drain line -->
+  <line x1="90" y1="355" x2="90" y2="518" stroke="#58A6FF" stroke-width="2" stroke-dasharray="6 3" opacity=".4"/>
+  <text x="76" y="445" text-anchor="middle" font-family="Space Mono,monospace" font-size="7" fill="#58A6FF" opacity=".65" transform="rotate(-90 76 445)">FRENCH DRAIN</text>
+  <!-- casita future dashed outline -->
+  <rect x="92" y="355" width="90" height="60" fill="transparent" stroke="rgba(200,169,110,.3)" stroke-width="1.5" stroke-dasharray="5 4" rx="4"/>
+  <text x="137" y="378" text-anchor="middle" font-family="Space Mono,monospace" font-size="7.5" fill="rgba(200,169,110,.5)">FUTURE</text>
+  <text x="137" y="390" text-anchor="middle" font-family="Space Mono,monospace" font-size="7.5" fill="rgba(200,169,110,.5)">CASITA</text>
+  <!-- scale bar -->
+  <line x1="640" y1="530" x2="790" y2="530" stroke="#8B949E" stroke-width="1.5"/>
+  <line x1="640" y1="524" x2="640" y2="536" stroke="#8B949E" stroke-width="1.5"/>
+  <line x1="790" y1="524" x2="790" y2="536" stroke="#8B949E" stroke-width="1.5"/>
+  <text x="715" y="548" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#8B949E">~20 ft (est.)</text>
+  <!-- legend key -->
+  <rect x="60" y="482" width="360" height="60" rx="6" fill="rgba(13,17,23,.88)" stroke="rgba(200,169,110,.15)" stroke-width="1"/>
+  <text x="80" y="499" font-family="Space Mono,monospace" font-size="8" fill="#8B949E" font-weight="600">KEY:</text>
+  <rect x="106" y="492" width="10" height="10" fill="rgba(200,169,110,.07)" stroke="#C8A96E" stroke-width="1.5" rx="1"/>
+  <text x="122" y="501" font-family="Space Mono,monospace" font-size="7.5" fill="#C8A96E">Gazebo</text>
+  <rect x="175" y="492" width="10" height="10" fill="url(#turf-pat)" stroke="#2ECC71" stroke-width="1"/>
+  <text x="191" y="501" font-family="Space Mono,monospace" font-size="7.5" fill="#2ECC71">Turf</text>
+  <rect x="230" y="492" width="10" height="10" fill="rgba(240,136,62,.1)" stroke="#F0883E" stroke-width="1"/>
+  <text x="246" y="501" font-family="Space Mono,monospace" font-size="7.5" fill="#F0883E">Kitchen</text>
+  <circle cx="303" cy="497" r="4" fill="rgba(188,140,255,.1)" stroke="#BC8CFF" stroke-width="1"/>
+  <text x="313" y="501" font-family="Space Mono,monospace" font-size="7.5" fill="#BC8CFF">Swing</text>
+  <circle cx="363" cy="497" r="3.5" fill="#F0883E" opacity=".8"/>
+  <text x="373" y="501" font-family="Space Mono,monospace" font-size="7.5" fill="#F0883E" opacity=".7">Lighting</text>
+  <text x="80" y="530" font-family="Space Mono,monospace" font-size="7" fill="#555">Conceptual · Not to scale · Pending field measurement · Not for permit use</text>
+</svg>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════ ZONES TABLE ═══ -->
+<div class="band-dark" id="zones">
+<section class="fade-in">
+  <div class="section-label">04 — Zone Breakdown</div>
+  <h2 class="section-title">Feature Zones</h2>
+  <p class="section-desc">Six distinct functional zones — each with a primary use, key features, and build phase priority.</p>
+  <div class="zones-table-wrap">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Zone</th><th>Est. Size</th><th>Primary Use</th><th>Key Features</th><th>Phase</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span style="font-family:Space Mono;color:var(--gold)">Z1</span></td>
+          <td><strong>Patio / Entertaining Hub</strong></td>
+          <td>~500 sq ft</td>
+          <td>Dining, lounging, entertaining</td>
+          <td>Extended pavers, outdoor dining set, string lights, ceiling fan, gas/electric rough-in</td>
+          <td><span class="badge bg">Phase 1</span></td>
+        </tr>
+        <tr>
+          <td><span style="font-family:Space Mono;color:var(--gold)">Z2</span></td>
+          <td><strong>Gazebo / Shade Structure</strong></td>
+          <td>~256 sq ft</td>
+          <td>Covered sitting, shade, dining</td>
+          <td>Metal louvered gazebo (motorized), bistro lighting, optional curtains</td>
+          <td><span class="badge bg">Phase 1</span></td>
+        </tr>
+        <tr>
+          <td><span style="font-family:Space Mono;color:var(--gold)">Z3</span></td>
+          <td><strong>Outdoor Kitchen</strong></td>
+          <td>~120 sq ft</td>
+          <td>BBQ, cooking, bar seating</td>
+          <td>Built-in grill, mini fridge, counter space, gas line + 240V hookup</td>
+          <td><span class="badge bo">Phase 2</span></td>
+        </tr>
+        <tr>
+          <td><span style="font-family:Space Mono;color:var(--gold)">Z4</span></td>
+          <td><strong>Turf / Kids Play Zone</strong></td>
+          <td>~400 sq ft</td>
+          <td>Kid-safe lawn, play area, pet zone</td>
+          <td>Premium synthetic turf, border edging, drainage base, rubberized infill option</td>
+          <td><span class="badge bo">Phase 2</span></td>
+        </tr>
+        <tr>
+          <td><span style="font-family:Space Mono;color:var(--gold)">Z5</span></td>
+          <td><strong>Swing / Lounge Corner</strong></td>
+          <td>~100 sq ft</td>
+          <td>Adult &amp; kid swing, casual seating</td>
+          <td>Free-standing steel swing frame, canopy option, pavers beneath, lighted</td>
+          <td><span class="badge bb">Phase 3</span></td>
+        </tr>
+        <tr>
+          <td><span style="font-family:Space Mono;color:var(--gold)">Z6</span></td>
+          <td><strong>Desert Landscape Border</strong></td>
+          <td>~800 sq ft</td>
+          <td>Low-maintenance perimeter</td>
+          <td>Red/brown crushed granite, accent boulders, drought-tolerant plants, drip system</td>
+          <td><span class="badge bb">Phase 3</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════ TIERS ═══ -->
+<div class="band-dark2" id="tiers">
+<section class="fade-in">
+  <div class="section-label">05 — Investment Tiers</div>
+  <h2 class="section-title">Choose Your Level</h2>
+  <p class="section-desc">Three renovation tiers — each building on the last. All prices are conceptual estimates pending final measurements and contractor bids.</p>
+  <div class="tiers">
+
+    <div class="tier-card">
+      <div class="tier-label">Tier 1</div>
+      <div class="tier-name">Essential Clean</div>
+      <div class="tier-price">$15,000 – $28,000</div>
+      <ul class="tier-features">
+        <li class="in">Demo &amp; haul-away (hot tub, RR ties, debris)</li>
+        <li class="in">Dead tree removal (1–2) + stump grinding</li>
+        <li class="in">Rough grading + drainage channel fix</li>
+        <li class="in">CMU wall repaint (all sides)</li>
+        <li class="in">DG re-spread with border edging</li>
+        <li class="in">Side gate install (powder-coat steel)</li>
+        <li class="in">Patio power wash + reseal</li>
+        <li class="in">Pomegranate relocation to planter</li>
+        <li class="out">Gazebo / shade structure</li>
+        <li class="out">Outdoor kitchen or gas lines</li>
+        <li class="out">Synthetic turf</li>
+        <li class="out">Landscape lighting</li>
+      </ul>
+      <p class="tier-note">Best for clients wanting a clean slate before committing to a larger design phase. Yard becomes safe, functional, and usable immediately.</p>
+    </div>
+
+    <div class="tier-card featured">
+      <div class="tier-label">Tier 2</div>
+      <div class="tier-name">Lifestyle Upgrade</div>
+      <div class="tier-price">$45,000 – $70,000</div>
+      <ul class="tier-features">
+        <li class="in">Everything in Tier 1</li>
+        <li class="in">Metal louvered gazebo (16×16, motorized option)</li>
+        <li class="in">Paver patio extension (travertine or concrete)</li>
+        <li class="in">Premium synthetic turf (~400 sq ft kids zone)</li>
+        <li class="in">Free-standing swing structure + canopy</li>
+        <li class="in">Landscape lighting (LED path + accent + uplights)</li>
+        <li class="in">Pomegranate repotted into large decorative planter</li>
+        <li class="in">Drip irrigation system for plants + trees</li>
+        <li class="out">Outdoor kitchen / gas line run</li>
+        <li class="out">Custom built-in BBQ island</li>
+        <li class="out">Smart lighting system</li>
+      </ul>
+      <p class="tier-note">The sweet spot. Full functional backyard for family use — kid zone, shade, lounging, and Arizona-style landscaping that impresses.</p>
+    </div>
+
+    <div class="tier-card">
+      <div class="tier-label">Tier 3</div>
+      <div class="tier-name">Luxury Resort</div>
+      <div class="tier-price">$85,000 – $140,000+</div>
+      <ul class="tier-features">
+        <li class="in">Everything in Tiers 1 + 2</li>
+        <li class="in">Custom wood or steel pergola (upgraded from gazebo)</li>
+        <li class="in">Full outdoor kitchen island (BBQ, sink, bar fridge)</li>
+        <li class="in">Gas line run + 240V electric to kitchen zone</li>
+        <li class="in">Smart landscape lighting (app-controlled zones)</li>
+        <li class="in">Premium travertine pavers throughout patio</li>
+        <li class="in">Casita-ready utility stub-outs (ADU Phase 4 prep)</li>
+        <li class="in">Motorized shade screens on gazebo/pergola</li>
+        <li class="in">Custom boulder + succulent specimen garden</li>
+        <li class="in">Outdoor speaker system rough-in</li>
+      </ul>
+      <p class="tier-note">Full entertainment compound. Resort-grade finishes throughout. Designed to impress and engineered to last the Arizona climate.</p>
+    </div>
+
+  </div>
+  <p style="margin-top:1.75rem;font-size:.8rem;color:var(--text2);text-align:center;font-family:Space Mono,monospace">* All pricing is conceptual — pending field measurement, material selection, and contractor quote. Phoenix metro pricing baseline.</p>
+</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════ ESTIMATOR ═══ -->
+<div class="band-dark" id="estimator">
+<section class="fade-in">
+  <div class="section-label">05b — Interactive Tool</div>
+  <h2 class="section-title">Build Your Estimate</h2>
+  <p class="section-desc">Check the items you want included — the estimated range updates automatically. Use this as a starting-point conversation tool before formal bids.</p>
+
+  <div class="estimator">
+    <h3>🔧 Scope Builder</h3>
+    <p class="estimator-desc">Check/uncheck line items to build a rough budget estimate. Mid-range values used for calculation.</p>
+    <div class="estimator-items" id="est-items">
+      <!-- populated by JS -->
+    </div>
+    <div class="est-total-bar">
+      <div>
+        <div class="est-total-label">Estimated Range</div>
+        <div style="font-size:.75rem;color:var(--text2);margin-top:.2rem;font-family:Space Mono,monospace">Based on Phoenix metro averages</div>
+      </div>
+      <div class="est-total-val" id="est-total">$0</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════ MATERIALS ═══ -->
+<div class="band-dark2" id="materials">
+<section class="fade-in">
+  <div class="section-label">06 — Material Selections</div>
+  <h2 class="section-title">Finishes &amp; Components</h2>
+  <p class="section-desc">Curated material options for each zone at multiple price points. Final selections presented as sample boards at the design meeting.</p>
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="filterMats('all',this)">All</button>
+    <button class="tab-btn" onclick="filterMats('flooring',this)">Flooring</button>
+    <button class="tab-btn" onclick="filterMats('turf',this)">Turf</button>
+    <button class="tab-btn" onclick="filterMats('structures',this)">Structures</button>
+    <button class="tab-btn" onclick="filterMats('landscape',this)">Landscape</button>
+    <button class="tab-btn" onclick="filterMats('lighting',this)">Lighting</button>
+  </div>
+  <div class="materials-grid" id="mat-grid">
+
+    <!-- FLOORING -->
+    <div class="mat-card" data-cat="flooring">
+      <div class="mat-category">Flooring</div>
+      <div class="mat-name">Travertine Pavers</div>
+      <div class="mat-desc">Natural stone with warm ivory/cream tone. Elegant and heat-resistant — ideal for Arizona. Non-slip when honed. Sealing every 3–5 years.</div>
+      <div class="mat-cost">Est. <span>$18–$26 / sq ft installed</span></div>
+    </div>
+    <div class="mat-card" data-cat="flooring">
+      <div class="mat-category">Flooring</div>
+      <div class="mat-name">Concrete Pavers (Broom Finish)</div>
+      <div class="mat-desc">Classic grey or charcoal. Durable, budget-friendly, low maintenance. Excellent for large patio areas. Wide color/texture options.</div>
+      <div class="mat-cost">Est. <span>$10–$16 / sq ft installed</span></div>
+    </div>
+    <div class="mat-card" data-cat="flooring">
+      <div class="mat-category">Flooring</div>
+      <div class="mat-name">Saltillo Tile (Terracotta)</div>
+      <div class="mat-desc">Rich warm terracotta with natural variation. Southwest / Mediterranean feel. Requires sealing in AZ sun. Adds color pop.</div>
+      <div class="mat-cost">Est. <span>$14–$20 / sq ft installed</span></div>
+    </div>
+    <div class="mat-card" data-cat="flooring">
+      <div class="mat-category">Flooring</div>
+      <div class="mat-name">Stamped Concrete (New Pour)</div>
+      <div class="mat-desc">Extend existing patio with matching or contrasting stamped pattern. Good for seamless transitions from old slab.</div>
+      <div class="mat-cost">Est. <span>$12–$18 / sq ft installed</span></div>
+    </div>
+
+    <!-- TURF -->
+    <div class="mat-card" data-cat="turf">
+      <div class="mat-category">Synthetic Turf</div>
+      <div class="mat-name">SYNLawn® Premium Blade</div>
+      <div class="mat-desc">60oz face weight, natural green blade. Pet &amp; child safe, heat-reducing infill available. 15-year warranty. Excellent drainage backing.</div>
+      <div class="mat-cost">Est. <span>$14–$19 / sq ft installed</span></div>
+    </div>
+    <div class="mat-card" data-cat="turf">
+      <div class="mat-category">Synthetic Turf</div>
+      <div class="mat-name">FieldTurf® Landscape</div>
+      <div class="mat-desc">Multi-tone green blade for ultra-realistic look. Used in high-end residential. Excellent drainage. Great for kids and pets.</div>
+      <div class="mat-cost">Est. <span>$16–$22 / sq ft installed</span></div>
+    </div>
+    <div class="mat-card" data-cat="turf">
+      <div class="mat-category">Synthetic Turf</div>
+      <div class="mat-name">Economy Blade (Budget Option)</div>
+      <div class="mat-desc">Basic 30oz turf — good for large areas where cost is priority. Limited color variety. 8-year warranty. Still pet + kid safe.</div>
+      <div class="mat-cost">Est. <span>$8–$12 / sq ft installed</span></div>
+    </div>
+
+    <!-- STRUCTURES -->
+    <div class="mat-card" data-cat="structures">
+      <div class="mat-category">Structures</div>
+      <div class="mat-name">Metal Gazebo — Louvered Roof</div>
+      <div class="mat-desc">Aluminum frame with motorized or manual louvered panels. Opens/closes for rain or full sun — the Costco-style the client referenced. Very popular in AZ.</div>
+      <div class="mat-cost">Est. <span>$8,000–$18,000 installed</span></div>
+    </div>
+    <div class="mat-card" data-cat="structures">
+      <div class="mat-category">Structures</div>
+      <div class="mat-name">Wood Pergola (Cedar / Redwood)</div>
+      <div class="mat-desc">Classic warm look. Open lattice roof. Can combine with shade sail or retractable screen. Traditional aesthetic that adds warmth.</div>
+      <div class="mat-cost">Est. <span>$12,000–$25,000 installed</span></div>
+    </div>
+    <div class="mat-card" data-cat="structures">
+      <div class="mat-category">Structures</div>
+      <div class="mat-name">Steel Pergola (Powder Coat)</div>
+      <div class="mat-desc">Modern industrial profile. Matte black or bronze finish. Extremely durable for Arizona heat and UV. Minimal maintenance required.</div>
+      <div class="mat-cost">Est. <span>$15,000–$35,000 installed</span></div>
+    </div>
+    <div class="mat-card" data-cat="structures">
+      <div class="mat-category">Structures</div>
+      <div class="mat-name">Free-Standing Swing Frame</div>
+      <div class="mat-desc">Powder-coated steel A-frame with hanging bench swing. Optional canopy top. For adults and kids. No tree anchor required.</div>
+      <div class="mat-cost">Est. <span>$1,500–$4,000 installed</span></div>
+    </div>
+    <div class="mat-card" data-cat="structures">
+      <div class="mat-category">Structures</div>
+      <div class="mat-name">Outdoor Kitchen Island</div>
+      <div class="mat-desc">Custom stucco-clad or stainless steel island. Built-in grill, refrigerator, side burner, sink option. Gas + 240V required. Covered zone essential.</div>
+      <div class="mat-cost">Est. <span>$12,000–$30,000 installed</span></div>
+    </div>
+
+    <!-- LANDSCAPE -->
+    <div class="mat-card" data-cat="landscape">
+      <div class="mat-category">Landscape</div>
+      <div class="mat-name">Decomposed Granite — Desert Gold</div>
+      <div class="mat-desc">¼" crushed gold/tan DG. Low-maintenance, weed-barrier compatible. Classic Arizona desert look. Client requested warm tones (not grey).</div>
+      <div class="mat-cost">Est. <span>$2–$4 / sq ft installed</span></div>
+    </div>
+    <div class="mat-card" data-cat="landscape">
+      <div class="mat-category">Landscape</div>
+      <div class="mat-name">Red Crushed Granite</div>
+      <div class="mat-desc">Rich reddish-brown tone. Great color contrast against tan walls and green turf/plants. Popular in Scottsdale-style desert yards.</div>
+      <div class="mat-cost">Est. <span>$2.50–$5 / sq ft installed</span></div>
+    </div>
+    <div class="mat-card" data-cat="landscape">
+      <div class="mat-category">Landscape</div>
+      <div class="mat-name">Accent Boulders</div>
+      <div class="mat-desc">Large quartzite or river rock boulders (200–800 lb). Placed at visual focal points — premium natural look that anchors the landscape.</div>
+      <div class="mat-cost">Est. <span>$300–$900 per boulder placed</span></div>
+    </div>
+    <div class="mat-card" data-cat="landscape">
+      <div class="mat-category">Landscape</div>
+      <div class="mat-name">Drip Irrigation System</div>
+      <div class="mat-desc">Timer-controlled drip for all plants, succulents, and trees. Essential for AZ heat. Ties into new backflow or existing lines.</div>
+      <div class="mat-cost">Est. <span>$1,500–$4,000 system</span></div>
+    </div>
+
+    <!-- LIGHTING -->
+    <div class="mat-card" data-cat="lighting">
+      <div class="mat-category">Lighting</div>
+      <div class="mat-name">LED Path Lights (Low Voltage)</div>
+      <div class="mat-desc">Solar or wired stake lights along pathways and turf edges. Warm white 2700K. Dusk-to-dawn sensor. Essential for evening atmosphere.</div>
+      <div class="mat-cost">Est. <span>$800–$2,500 installed</span></div>
+    </div>
+    <div class="mat-card" data-cat="lighting">
+      <div class="mat-category">Lighting</div>
+      <div class="mat-name">Overhead String Lights</div>
+      <div class="mat-desc">Commercial-grade Edison or globe string lights strung across patio. Warm ambiance for evening dining. Client will love these.</div>
+      <div class="mat-cost">Est. <span>$600–$1,800 installed</span></div>
+    </div>
+    <div class="mat-card" data-cat="lighting">
+      <div class="mat-category">Lighting</div>
+      <div class="mat-name">Uplights (Trees + Walls)</div>
+      <div class="mat-desc">In-ground LED uplights aimed at preserved trees and painted CMU walls. Dramatic depth and warmth at night.</div>
+      <div class="mat-cost">Est. <span>$1,200–$3,500 installed</span></div>
+    </div>
+    <div class="mat-card" data-cat="lighting">
+      <div class="mat-category">Lighting</div>
+      <div class="mat-name">Smart Lighting System</div>
+      <div class="mat-desc">App-controlled landscape lighting (Kichler, Focus Industries). Color temperature and zone control. Tier 3 upgrade — showstopper at night.</div>
+      <div class="mat-cost">Est. <span>$4,000–$10,000 system</span></div>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════ PHASES ═══ -->
+<div class="band-dark" id="phases">
+<section class="fade-in">
+  <div class="section-label">07 — Project Execution</div>
+  <h2 class="section-title">Phased Build Plan</h2>
+  <p class="section-desc">Four phases allow the project to be budgeted over time. Each phase is independently completeable — no phase leaves the yard in a bad state.</p>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="phase-num">Phase 1 — Foundation</div>
+      <div class="phase-title">Demo, Cleanup &amp; Drainage</div>
+      <div class="phase-desc">Remove hot tub, railroad ties, dead tree, and all debris. Haul off-site. Grade and level yard. Address drainage at driveway-adjacent wall — install French drain or deco drain channel. Repaint all CMU block walls. Install side gate for motorcycle and trash access. Power-wash and reseal existing patio. Repot pomegranate into large decorative planter.</div>
+      <div class="phase-cost">Est. Cost: $8,000 – $18,000</div>
+      <div class="phase-duration">Duration: 2–3 weeks · Crew: Demo + landscape</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="phase-num">Phase 2 — Core Structures</div>
+      <div class="phase-title">Gazebo + Patio Extension + Turf</div>
+      <div class="phase-desc">Extend existing patio with pavers (travertine or stamped concrete). Install louvered metal gazebo (client referenced motorized Costco-style — opens/closes for rain and sun). Install synthetic turf in kids' play zone with proper weed barrier and drainage base. Lay DG landscape and accent rock in remaining yard areas.</div>
+      <div class="phase-cost">Est. Cost: $22,000 – $40,000</div>
+      <div class="phase-duration">Duration: 3–5 weeks · Crew: Concrete, masonry, landscape</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="phase-num">Phase 3 — Outdoor Kitchen + Lighting</div>
+      <div class="phase-title">Kitchen Island, BBQ &amp; Landscape Lighting</div>
+      <div class="phase-desc">Run gas line and 240V electric to outdoor kitchen zone off the back door area. Install outdoor kitchen island: built-in grill, refrigerator, counter. Install overhead string lights at patio, LED uplights on trees and CMU walls, low-voltage path lights along turf border. Install free-standing swing structure in corner zone near existing trees.</div>
+      <div class="phase-cost">Est. Cost: $18,000 – $38,000</div>
+      <div class="phase-duration">Duration: 3–4 weeks · Crew: Electrician, gas plumber, landscape</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="phase-num">Phase 4 — Future (Optional)</div>
+      <div class="phase-title">Casita + Premium Upgrades</div>
+      <div class="phase-desc">Client mentioned desire to add small casita (ADU) in rear portion of yard. Phase 4 addresses: utility stub-outs for casita, final landscaping of rear half of yard, premium smart lighting system, motorized screens on gazebo/pergola, and outdoor sound system integration.<br><br><strong style="color:var(--text)">Note:</strong> HOA + city permitting required before casita build. We can assist with design documentation for permit applications.</div>
+      <div class="phase-cost">Est. Cost: $30,000 – $80,000+</div>
+      <div class="phase-duration">Duration: 4–8 weeks · Crew: General contractor + sub-trades</div>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════ NOTES ═══ -->
+<div class="band-dark2" id="notes">
+<section class="fade-in">
+  <div class="section-label">08 — Open Items</div>
+  <h2 class="section-title">Notes &amp; Next Steps</h2>
+
+  <div class="notes-box">
+    <h3>📋 Client Preferences (from Consultation)</h3>
+    <div class="check-item">✅ <span><strong>No pool</strong> — client explicitly does not want a pool.</span></div>
+    <div class="check-item">✅ <span><strong>Gazebo</strong> — definitely wanted. Motorized louvered metal gazebo (Costco-style) referenced by client.</span></div>
+    <div class="check-item">✅ <span><strong>Outdoor kitchen + BBQ</strong> — off back door area. Modular or built-in, covered. Gas must run during patio phase.</span></div>
+    <div class="check-item">✅ <span><strong>Synthetic turf</strong> — yes, wants green. Wife favors it for kids and low maintenance. No natural grass.</span></div>
+    <div class="check-item">✅ <span><strong>Swing</strong> — free-standing swing for kids and adults. Near existing trees or back corner.</span></div>
+    <div class="check-item">✅ <span><strong>Side gate</strong> — enclose side yard for electric motorcycle storage + trash access. HOA check needed before ordering.</span></div>
+    <div class="check-item">✅ <span><strong>Pomegranate</strong> — move into a large decorative planter. Do NOT remove — sentimental / functional value.</span></div>
+    <div class="check-item">✅ <span><strong>Trees</strong> — keep 2–3 existing mature trees. Remove dead one (mistletoe-killed). Small scrub trees near fence can go.</span></div>
+    <div class="check-item">✅ <span><strong>Casita (future)</strong> — keep the possibility open for rear-yard ADU in Phase 4. Don't over-invest that corner now.</span></div>
+    <div class="check-item">✅ <span><strong>Color palette</strong> — warm earth tones (red/brown rock, not grey). Green from turf. Clean and high-end. Arizona desert-modern.</span></div>
+  </div>
+
+  <div class="notes-box" style="margin-top:1.5rem">
+    <h3>❓ Items Still Needed Before Formal Proposal</h3>
+    <div class="check-item">📐 <span><strong>Measurements</strong> — actual yard dimensions needed at site visit. All sq ft estimates are conceptual until surveyed.</span></div>
+    <div class="check-item">🏛️ <span><strong>HOA Check</strong> — side gate and structures over 8ft may require HOA approval. Client to confirm before speccing gate or gazebo height.</span></div>
+    <div class="check-item">🔌 <span><strong>Gas + Electric Routing</strong> — confirm existing gas stub-outs and panel capacity before outdoor kitchen design is finalized.</span></div>
+    <div class="check-item">🌲 <span><strong>Tree Survey</strong> — arborist to confirm which trees to keep vs trim-only vs remove. Dead one confirmed, others TBD.</span></div>
+    <div class="check-item">🏗️ <span><strong>Casita Setbacks</strong> — check city code for ADU setback requirements before planning Phase 4 utility stubs.</span></div>
+    <div class="check-item">🎨 <span><strong>Style Direction</strong> — client to confirm aesthetic: Modern Desert Clean, Mediterranean Warm, or Contemporary Luxury.</span></div>
+  </div>
+
+  <div class="notes-box" style="margin-top:1.5rem">
+    <h3>⚡ Utility &amp; Infrastructure Notes</h3>
+    <p>Gas and electric discussed to run from the house, coming right off the back door. The existing patio was likely poured to allow future connections — check for existing conduit or stub-outs before trenching to save cost.</p>
+    <p>A disconnected fish pond electrical connection exists in the yard — can potentially be rerouted to serve the outdoor kitchen zone rather than trenching new conduit.</p>
+    <p>A drainage slot/hole is visible near the driveway-adjacent wall. This is the original drainage path. Any new hardscape must maintain or improve this drainage — French drain or deco drain channel recommended in Phase 1.</p>
+  </div>
+
+  <div class="next-steps-grid">
+    <div class="next-card" style="border-left:3px solid var(--gold)">
+      <div class="next-card-icon">📐</div>
+      <div class="next-card-title">1. Field Measurement</div>
+      <div class="next-card-desc">Schedule site visit for exact yard dimensions. Confirm house setback, wall positions, utility locations. Real measurements refine all zone sizing and costs.</div>
+    </div>
+    <div class="next-card" style="border-left:3px solid var(--blue)">
+      <div class="next-card-icon">📋</div>
+      <div class="next-card-title">2. HOA Check</div>
+      <div class="next-card-desc">Submit proposed gate + enclosure to HOA. Confirm structure height limits for gazebo/pergola. Get written approval before pulling permits.</div>
+    </div>
+    <div class="next-card" style="border-left:3px solid var(--green)">
+      <div class="next-card-icon">💬</div>
+      <div class="next-card-title">3. Tier Selection</div>
+      <div class="next-card-desc">Client to confirm Tier 1, 2, or 3 scope. Phase approach available — demo first, then build. Allows budget management and design iteration.</div>
+    </div>
+    <div class="next-card" style="border-left:3px solid var(--purple)">
+      <div class="next-card-icon">📄</div>
+      <div class="next-card-title">4. Formal Proposal</div>
+      <div class="next-card-desc">Upon measurement + tier confirmation, formal line-item proposal generated with contractor quotes, material specs, timeline, and permit plan.</div>
+    </div>
+  </div>
+
+</section>
+</div>
+
+<!-- FOOTER -->
+<footer style="text-align:center;padding:3rem 2rem;border-top:1px solid rgba(255,255,255,.07);color:var(--text2);font-family:Space Mono,monospace;font-size:.68rem;letter-spacing:.08em">
+  <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--gold);margin-bottom:.75rem;font-weight:700;letter-spacing:.04em">◈ Blueprint Co.</div>
+  <p>Confidential Conceptual Design Document &nbsp;·&nbsp; Generated from 55 site photos &amp; client consultation transcript</p>
+  <p style="margin-top:.5rem;opacity:.5">All measurements estimated &nbsp;·&nbsp; Subject to field verification &nbsp;·&nbsp; Not for permit submission &nbsp;·&nbsp; Version 5 &nbsp;·&nbsp; April 2026</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="if(event.target===this)closeLB()">
+  <button id="lb-close" onclick="closeLB()">✕</button>
+  <img id="lb-img" src="" alt="">
+  <div id="lb-nav">
+    <button id="lb-prev" onclick="lbNav(-1)">← Prev</button>
+    <div>
+      <div id="lb-caption"></div>
+      <div id="lb-counter"></div>
+    </div>
+    <button id="lb-next" onclick="lbNav(1)">Next →</button>
+  </div>
+</div>
+
+<script>
+// ─── PHOTO DATA ────────────────────────────────────────────────────
+const YARD_PHOTOS = {};
+
+const ZONE_MAP = {
+  "6014":"main","6015":"main","6016":"main","6017":"main","6018":"back",
+  "6019":"back","6020":"patio","6021":"patio","6022":"patio","6023":"patio",
+  "6024":"patio","6025":"patio","6026":"patio","6027":"patio","6028":"side",
+  "6029":"side","6030":"side","6031":"side","6032":"side","6033":"main",
+  "6034":"main","6035":"main","6036":"main","6037":"main","6038":"main",
+  "6039":"main","6040":"patio","6041":"patio","6042":"patio","6043":"patio",
+  "6044":"patio","6045":"side","6046":"side","6047":"side","6048":"back",
+  "6049":"back","6050":"patio","6051":"main","6052":"main","6053":"main",
+  "6054":"back","6055":"back","6056":"back","6057":"back","6058":"back",
+  "6059":"back","6060":"main","6061":"main","6062":"main","6063":"back",
+  "6064":"back","6065":"back","6066":"side","6067":"side","6068":"side"
+};
+
+const ZONE_LABELS = {
+  "main":"Main Yard","patio":"Patio / House","side":"Side Yard","back":"Back Zone"
+};
+
+// ─── GALLERY ───────────────────────────────────────────────────────
+let currentFilter = 'all';
+let filteredKeys = [];
+let currentLBIndex = 0;
+
+function buildGallery(filter) {
+  currentFilter = filter;
+  const gallery = document.getElementById('photo-gallery');
+  const countEl = document.getElementById('gallery-count');
+  const keys = Object.keys(YARD_PHOTOS).sort();
+
+  if (keys.length === 0) {
+    gallery.innerHTML = '<div class="no-photos"><p>📷</p><p>Photo gallery will appear here once photos are embedded.<br>Share your 55 HEIC/JPG images in the next session.</p></div>';
+    countEl.textContent = '';
+    return;
+  }
+
+  filteredKeys = keys.filter(k => filter === 'all' || (ZONE_MAP[k] || 'main') === filter);
+  countEl.textContent = `Showing ${filteredKeys.length} of ${keys.length} photos`;
+
+  gallery.innerHTML = '';
+  filteredKeys.forEach((num, idx) => {
+    const zone = ZONE_MAP[num] || 'main';
+    const src = YARD_PHOTOS[num];
+    const badge = ZONE_LABELS[zone] || zone;
+    const card = document.createElement('div');
+    card.className = 'photo-card';
+    card.innerHTML = `<img src="${src}" loading="lazy" alt="IMG_${num}">
+      <div class="photo-zone-badge">${badge}</div>
+      <div class="photo-num-badge">IMG_${num}</div>`;
+    card.onclick = () => openLB(idx);
+    gallery.appendChild(card);
+  });
+}
+
+function filterPhotos(filter, btn) {
+  document.querySelectorAll('#photos .tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  buildGallery(filter);
+}
+
+// ─── LIGHTBOX ──────────────────────────────────────────────────────
+function openLB(idx) {
+  currentLBIndex = idx;
+  updateLB();
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function updateLB() {
+  const num = filteredKeys[currentLBIndex];
+  document.getElementById('lb-img').src = YARD_PHOTOS[num];
+  const zone = ZONE_LABELS[ZONE_MAP[num] || 'main'] || '';
+  document.getElementById('lb-caption').textContent = `IMG_${num} — ${zone}`;
+  document.getElementById('lb-counter').textContent = `${currentLBIndex + 1} / ${filteredKeys.length}`;
+}
+function lbNav(dir) {
+  currentLBIndex = (currentLBIndex + dir + filteredKeys.length) % filteredKeys.length;
+  updateLB();
+}
+function closeLB() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('active')) return;
+  if (e.key === 'Escape') closeLB();
+  if (e.key === 'ArrowLeft') lbNav(-1);
+  if (e.key === 'ArrowRight') lbNav(1);
+});
+
+// ─── FLOORPLAN TABS ────────────────────────────────────────────────
+function showFP(which, btn) {
+  document.querySelectorAll('#floorplan .tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('fp-current').style.display = which === 'current' ? 'block' : 'none';
+  document.getElementById('fp-proposed').style.display = which === 'proposed' ? 'block' : 'none';
+}
+
+// ─── MATERIALS FILTER ──────────────────────────────────────────────
+function filterMats(cat, btn) {
+  document.querySelectorAll('#materials .tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.mat-card').forEach(c => {
+    c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none';
+  });
+}
+
+// ─── MOBILE NAV ────────────────────────────────────────────────────
+function toggleMobileNav() {
+  document.getElementById('nav-links').classList.toggle('open');
+}
+function closeMobileNav() {
+  document.getElementById('nav-links').classList.remove('open');
+}
+
+// ─── PROGRESS BAR ──────────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  const bar = document.getElementById('progress-bar');
+  const total = document.body.scrollHeight - window.innerHeight;
+  bar.style.width = (window.scrollY / total * 100) + '%';
+});
+
+// ─── SCROLL FADE IN ────────────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ─── COST ESTIMATOR ────────────────────────────────────────────────
+const EST_ITEMS = [
+  { label: "Demo & haul-away (hot tub, RR ties, debris)", lo: 3000, hi: 8000, checked: true },
+  { label: "Dead tree removal + stump grinding", lo: 1500, hi: 3500, checked: true },
+  { label: "Rough grading + drainage fix (French drain)", lo: 2000, hi: 5000, checked: true },
+  { label: "CMU wall repaint (all sides)", lo: 1500, hi: 4000, checked: true },
+  { label: "Side gate install (powder-coat steel)", lo: 2500, hi: 6000, checked: true },
+  { label: "Patio power wash + reseal", lo: 400, hi: 1200, checked: true },
+  { label: "Pomegranate relocation to planter", lo: 300, hi: 800, checked: true },
+  { label: "Paver patio extension (travertine / stamped)", lo: 8000, hi: 18000, checked: false },
+  { label: "Metal louvered gazebo (16×16 motorized)", lo: 10000, hi: 20000, checked: false },
+  { label: "Synthetic turf (400 sq ft kids zone)", lo: 5600, hi: 8800, checked: false },
+  { label: "Free-standing swing structure + canopy", lo: 1500, hi: 4000, checked: false },
+  { label: "Desert rock, DG, accent boulders + border", lo: 3000, hi: 8000, checked: false },
+  { label: "Drip irrigation system", lo: 1500, hi: 4000, checked: false },
+  { label: "LED path lights + uplights (trees + walls)", lo: 2000, hi: 6000, checked: false },
+  { label: "Overhead string lights at patio", lo: 600, hi: 1800, checked: false },
+  { label: "Outdoor kitchen island (BBQ + mini fridge)", lo: 12000, hi: 30000, checked: false },
+  { label: "Gas line run + 240V electric to kitchen", lo: 3000, hi: 8000, checked: false },
+  { label: "Smart lighting system (app-controlled)", lo: 4000, hi: 10000, checked: false },
+  { label: "Casita utility stub-outs (ADU prep)", lo: 5000, hi: 15000, checked: false },
+];
+
+function buildEstimator() {
+  const container = document.getElementById('est-items');
+  container.innerHTML = '';
+  EST_ITEMS.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'est-item';
+    div.innerHTML = `
+      <input type="checkbox" class="est-check" id="est-${i}" ${item.checked ? 'checked' : ''} onchange="updateEstTotal()">
+      <label for="est-${i}" class="est-label">${item.label}</label>
+      <span class="est-range">$${item.lo.toLocaleString()} – $${item.hi.toLocaleString()}</span>
+    `;
+    container.appendChild(div);
+  });
+  updateEstTotal();
+}
+
+function updateEstTotal() {
+  let lo = 0, hi = 0;
+  EST_ITEMS.forEach((item, i) => {
+    const cb = document.getElementById(`est-${i}`);
+    if (cb && cb.checked) { lo += item.lo; hi += item.hi; }
+  });
+  document.getElementById('est-total').textContent =
+    lo === 0 ? '$0' : `$${lo.toLocaleString()} – $${hi.toLocaleString()}`;
+}
+
+// ─── INIT ──────────────────────────────────────────────────────────
+buildGallery('all');
+buildEstimator();
+</script>
+</body>
+</html>
