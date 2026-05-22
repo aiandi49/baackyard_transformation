@@ -246,19 +246,26 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
 }
 .section-preview strong { color:var(--text); }
 .section-body {
-  overflow:hidden;
-  transition:max-height .45s cubic-bezier(.4,0,.2,1), opacity .35s ease;
-  max-height:99999px;
-  opacity:1;
+  overflow:visible;
+  max-height:none !important;
+  opacity:1 !important;
+  display:block !important;
 }
 .section-body.open {
-  max-height:99999px;
-  opacity:1;
+  max-height:none !important;
+  opacity:1 !important;
+  display:block !important;
+}
+.section-body.collapsed {
+  max-height:0 !important;
+  opacity:0 !important;
+  overflow:hidden !important;
 }
 /* first section (vision) starts open */
 .section-body.starts-open {
-  max-height:99999px;
-  opacity:1;
+  max-height:none !important;
+  opacity:1 !important;
+  display:block !important;
 }
 
 </style>
@@ -323,7 +330,7 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
   <p class="section-desc">This image was provided directly by the client. It represents their target aesthetic and layout — an Arizona desert-modern backyard with pavers, turf, covered kitchen/dining gazebo, fire pit lounge, and a signature A-frame hanging swing in the corner. Use this as the north star for all design decisions.</p>
 <div class="section-preview">The owner's north-star reference image for this project — a desert-modern Arizona backyard featuring pavers, synthetic turf, a covered outdoor kitchen and dining gazebo, a circular fire pit lounge, and a signature A-frame hanging swing. Every design decision in this document flows from this single image.</div>
 <div class="section-collapse-header" onclick="toggleSection('vision')">
-  <span style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▼ expand full section</span>
+  <span id="label-vision" style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▲ collapse section</span>
   <div class="collapse-toggle" id="btn-vision">▼</div>
 </div>
 <div class="section-body" id="body-vision">
@@ -373,7 +380,7 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
   <p class="section-desc">Key conditions identified from the 55-photo survey and client consultation transcript.</p>
 <div class="section-preview">A structured breakdown of existing site conditions derived from the photo survey and client consultation: CMU block walls, existing concrete slab, drainage behavior, caliche soil concerns, dead tree and vegetation inventory, current hot tub footprint, and grade/level opportunities. This is the 'before' snapshot that grounds the entire design.</div>
 <div class="section-collapse-header" onclick="toggleSection('analysis')">
-  <span style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▼ expand full section</span>
+  <span id="label-analysis" style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▲ collapse section</span>
   <div class="collapse-toggle" id="btn-analysis">▼</div>
 </div>
 <div class="section-body" id="body-analysis">
@@ -408,7 +415,7 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
   <p class="section-desc">Conceptual overhead wireframe based on photo analysis and client consultation. Actual measurements pending site visit.</p>
 <div class="section-preview">A conceptual overhead wireframe of the property showing the proposed layout — outdoor kitchen/gazebo zone, fire pit lounge, synthetic turf, A-frame swing corner, kids' water play area, and future casita zone. Toggle between the current state and proposed design. All dimensions are estimated pending the formal site-measure visit.</div>
 <div class="section-collapse-header" onclick="toggleSection('floorplan')">
-  <span style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▼ expand full section</span>
+  <span id="label-floorplan" style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▲ collapse section</span>
   <div class="collapse-toggle" id="btn-floorplan">▼</div>
 </div>
 <div class="section-body" id="body-floorplan">
@@ -557,7 +564,7 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
   <p class="section-desc">Six distinct functional zones — each with a primary use, key features, and build phase priority.</p>
 <div class="section-preview">The backyard is divided into six distinct functional zones: the Covered Kitchen & Dining Zone, the Fire Pit Lounge, the Synthetic Turf Play Field, the A-Frame Swing Corner, the Kids' Activity Zone (water play + play gym), and the Future Rear Zone (casita/putting green). Each zone has a primary use, key features, and a phased build priority.</div>
 <div class="section-collapse-header" onclick="toggleSection('zones')">
-  <span style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▼ expand full section</span>
+  <span id="label-zones" style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▲ collapse section</span>
   <div class="collapse-toggle" id="btn-zones">▼</div>
 </div>
 <div class="section-body" id="body-zones">
@@ -643,7 +650,7 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
   <p class="section-desc">The shade structure is the single most transformative element in this backyard. It defines the outdoor living room — the covered zone where the family will dine, lounge, and entertain through Tucson summers and mild winters. This section draws from expert sources across the industry to ensure we're presenting the best possible recommendation for this client, this yard, and this budget tier.</p>
 <div class="section-preview">A complete deep-dive into shade structure options for this backyard: motorized aluminum louvered pergolas, traditional solid-roof pavilions, and open-frame pergolas. Covers dimensions, structural requirements, roofline options, HOA considerations, material comparisons, and recommended products. The gazebo is the single most transformative element in this design.</div>
 <div class="section-collapse-header" onclick="toggleSection('gazebo')">
-  <span style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▼ expand full section</span>
+  <span id="label-gazebo" style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▲ collapse section</span>
   <div class="collapse-toggle" id="btn-gazebo">▼</div>
 </div>
 <div class="section-body" id="body-gazebo">
@@ -987,7 +994,7 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
   <p class="section-desc">The fire pit is the heart of this backyard — the anchor around which every evening moment will happen. This section documents the full research effort: fire pit types, recommended products, seating strategy, safety standards, and the media/fuel decisions that define the finished look. This is why we're ready to execute at the highest level.</p>
 <div class="section-preview">Full research on fire pit design for this project — built-in CMU/stone options vs. prefab steel bowls, natural gas vs. propane, fire media choices (glass vs. lava rock), seating wall integration, safety setback requirements, and Arizona-specific code notes. The fire pit is the emotional anchor of the backyard — this section covers everything needed to execute it at the highest level.</div>
 <div class="section-collapse-header" onclick="toggleSection('firepit')">
-  <span style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▼ expand full section</span>
+  <span id="label-firepit" style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▲ collapse section</span>
   <div class="collapse-toggle" id="btn-firepit">▼</div>
 </div>
 <div class="section-body" id="body-firepit">
@@ -1274,7 +1281,7 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
 
 <div class="section-preview">The outdoor kitchen connects directly to the gazebo structure — they are designed as one integrated zone. Built-in gas grill, side burner, refrigerator, and sink on a CMU-frame island with stone veneer and granite countertop. Gas line runs in Phase 1. Positioned off the back door for seamless indoor-outdoor flow. Owner confirmed: kitchen and gazebo must be blended, not treated as separate elements.</div>
 <div class="section-collapse-header" onclick="toggleSection('kitchen')">
-  <span style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▼ expand full section</span>
+  <span id="label-kitchen" style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▲ collapse section</span>
   <div class="collapse-toggle" id="btn-kitchen">▼</div>
 </div>
 <div class="section-body" id="body-kitchen">
@@ -1395,7 +1402,7 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
 
 <div class="section-preview">Owner and wife confirmed: synthetic turf throughout the main yard — no natural grass. Primary reasons: low maintenance, kid-friendly, stays green year-round in Tucson heat. Turf also creates the open field the owner needs for the kids' go-kart zone. Installation happens in Phase 3 after all underground utility runs and hardscape are complete.</div>
 <div class="section-collapse-header" onclick="toggleSection('turf')">
-  <span style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▼ expand full section</span>
+  <span id="label-turf" style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▲ collapse section</span>
   <div class="collapse-toggle" id="btn-turf">▼</div>
 </div>
 <div class="section-body" id="body-turf">
@@ -1464,7 +1471,7 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
   <p class="section-desc">Lighting is the single feature that separates a backyard that looks great in photos from one that becomes your family's favorite room after dark. A professionally designed lighting plan transforms every surface, creates atmosphere on command, and ensures safety across every zone — all from your phone.</p>
 <div class="section-preview">A full lighting design strategy for this backyard — zone-by-zone fixture recommendations, smart transformer setup, color temperature guidance, pathway lighting, uplighting for the gazebo and trees, fire pit ambiance lighting, and the kids' zone safety lighting. Includes a smartphone-controllable smart system spec and estimated installation cost.</div>
 <div class="section-collapse-header" onclick="toggleSection('lighting')">
-  <span style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▼ expand full section</span>
+  <span id="label-lighting" style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▲ collapse section</span>
   <div class="collapse-toggle" id="btn-lighting">▼</div>
 </div>
 <div class="section-body" id="body-lighting">
@@ -1702,7 +1709,7 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
   <p class="section-desc">After conversations with the owner, this is confirmed: <strong style="color:var(--gold)">no full swimming pool.</strong> The vision is a compact ~10-foot kids' water play area — a place for the little ones to splash, cool off, and play safely while parents relax nearby. This keeps the yard wide open for go-karts, the play gym, turf, and future flexibility.</p>
 <div class="section-preview">Based on the owner's confirmed direction from the latest walkthrough: no in-ground pool. Instead, a compact ~10-foot above-ground kids' water play area — sized for splashing and cooling off, not swimming. Positioned near the home where parents can always see the kids. This keeps the entire yard open for go-karts, the kids' play gym, and future flexibility. Hot tub is fully removed.</div>
 <div class="section-collapse-header" onclick="toggleSection('pool')">
-  <span style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▼ expand full section</span>
+  <span id="label-pool" style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▲ collapse section</span>
   <div class="collapse-toggle" id="btn-pool">▼</div>
 </div>
 <div class="section-body" id="body-pool">
@@ -1850,7 +1857,7 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
   <p class="section-desc">Four phases allow the project to be budgeted over time. Each phase is independently completeable — no phase leaves the yard in a bad state.</p>
 <div class="section-preview">Four independently completeable build phases that let the project happen in smart stages: Phase 1 (Demo & Foundation), Phase 2 (Kitchen, Gazebo & Fire Pit), Phase 3 (Turf, Swing & Kids' Zone), Phase 4 (Rear Yard — casita/future). No phase leaves the yard in an unusable state — each one delivers a finished, livable result.</div>
 <div class="section-collapse-header" onclick="toggleSection('phases')">
-  <span style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▼ expand full section</span>
+  <span id="label-phases" style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▲ collapse section</span>
   <div class="collapse-toggle" id="btn-phases">▼</div>
 </div>
 <div class="section-body" id="body-phases">
@@ -1910,7 +1917,7 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
   <p class="section-desc">Curated material options for each zone at multiple price points. Final selections presented as sample boards at the design meeting.</p>
 <div class="section-preview">Curated material selections for every surface and structure in this project: paver options (travertine, concrete, porcelain), synthetic turf specs, gazebo materials, outdoor kitchen countertop and finish options, fire pit media, furniture, lighting fixtures, and accent elements — all organized by zone at multiple price points.</div>
 <div class="section-collapse-header" onclick="toggleSection('materials')">
-  <span style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▼ expand full section</span>
+  <span id="label-materials" style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▲ collapse section</span>
   <div class="collapse-toggle" id="btn-materials">▼</div>
 </div>
 <div class="section-body" id="body-materials">
@@ -2123,7 +2130,7 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
   <p class="section-desc">Three renovation tiers — each building on the last. All prices are conceptual estimates pending final measurements and contractor bids.</p>
 <div class="section-preview">Three investment tiers let the owner choose the scope that fits the budget: Tier 1 (Foundation — demo, drainage, walls, patio), Tier 2 (The Living Room — gazebo, kitchen, fire pit, turf), and Tier 3 (Full Vision — kids' zone, lighting, play gym, casita prep). Each tier stands alone and adds to the last.</div>
 <div class="section-collapse-header" onclick="toggleSection('tiers')">
-  <span style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▼ expand full section</span>
+  <span id="label-tiers" style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▲ collapse section</span>
   <div class="collapse-toggle" id="btn-tiers">▼</div>
 </div>
 <div class="section-body" id="body-tiers">
@@ -2208,7 +2215,7 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
   <p class="section-desc">Check the items you want included — the estimated range updates automatically. Use this as a starting-point conversation tool before formal bids.</p>
 <div class="section-preview">An interactive budget tool — check the features you want and the estimated cost range updates in real time. Use it to explore trade-offs, prioritize phases, and open the budget conversation with the contractor. All figures are conceptual estimates pending formal measurements.</div>
 <div class="section-collapse-header" onclick="toggleSection('estimator')">
-  <span style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▼ expand full section</span>
+  <span id="label-estimator" style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▲ collapse section</span>
   <div class="collapse-toggle" id="btn-estimator">▼</div>
 </div>
 <div class="section-body" id="body-estimator">
@@ -2246,7 +2253,7 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
 
 <div class="section-preview"><strong>What you're reading is not free to produce.</strong> The research phase — agency contacts, permit verification, Saguaro compliance, HOA submissions, utility capacity checks, and ADU feasibility — represents 15–25 hours of professional coordination work. This section explains the retainer structure and what it buys you before construction begins.</div>
 <div class="section-collapse-header" onclick="toggleSection('retainer')">
-  <span style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▼ expand full section</span>
+  <span id="label-retainer" style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▲ collapse section</span>
   <div class="collapse-toggle" id="btn-retainer">▼</div>
 </div>
 <div class="section-body" id="body-retainer">
@@ -2377,7 +2384,7 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
 
 <div class="section-preview"><strong>Tucson, AZ — Specific to this property.</strong> Covers: Saguaro cactus protected species compliance (Day 1), grading/drainage/caliche approvals (Day 2), full building permit matrix for every feature in this project (Day 3), HOA + Assessor + utility capacity research (Day 4), and compilation + Saturday meeting prep (Day 5). Includes a master contact directory and the top 5 risks that could delay this project.</div>
 <div class="section-collapse-header" onclick="toggleSection('preconstruction')">
-  <span style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▼ expand full section</span>
+  <span id="label-preconstruction" style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▲ collapse section</span>
   <div class="collapse-toggle" id="btn-preconstruction">▼</div>
 </div>
 <div class="section-body" id="body-preconstruction">
@@ -2494,7 +2501,7 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
 
 <div class="section-preview">The full client preference log and open action items — pulled directly from consultation transcripts. Confirmed features, contractor to-dos, style direction notes, and every key decision documented with exact owner quotes. This is the living record of everything agreed upon so nothing gets lost between visits.</div>
 <div class="section-collapse-header" onclick="toggleSection('notes')">
-  <span style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▼ expand full section</span>
+  <span id="label-notes" style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▲ collapse section</span>
   <div class="collapse-toggle" id="btn-notes">▼</div>
 </div>
 <div class="section-body" id="body-notes">
@@ -2579,7 +2586,7 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
   <p class="section-desc">A step-by-step narrative for what happens on-site — from the first excavator to the final lighting walk. Think of this as your project's visual playbook. The yard will look messy before it looks amazing.</p>
 <div class="section-preview">A narrative walkthrough of the construction sequence — told step by step from first day on site through final walkthrough. Covers demo and haul-away, underground utility runs, concrete and paver work, gazebo installation, kitchen build-out, turf installation, fire pit construction, lighting, and punch-list. Helps the owner understand what's happening on site at every stage.</div>
 <div class="section-collapse-header" onclick="toggleSection('storybook')">
-  <span style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▼ expand full section</span>
+  <span id="label-storybook" style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▲ collapse section</span>
   <div class="collapse-toggle" id="btn-storybook">▼</div>
 </div>
 <div class="section-body" id="body-storybook">
@@ -2757,7 +2764,7 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
   <p class="section-desc">Pulled from professional contractor guides, timber frame specialists, and outdoor kitchen builders. These are the lessons that separate a smooth build from a costly one.</p>
 <div class="section-preview">Hard-won insights from professional outdoor builders — the things that separate a project that lasts 20 years from one that needs repairs in 3. Covers drainage sequencing, underground conduit planning, paver base depth, gazebo footing requirements, fire pit gas line specs, turf seam placement, and common contractor shortcuts to watch out for.</div>
 <div class="section-collapse-header" onclick="toggleSection('pro-tips')">
-  <span style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▼ expand full section</span>
+  <span id="label-pro-tips" style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▲ collapse section</span>
   <div class="collapse-toggle" id="btn-pro-tips">▼</div>
 </div>
 <div class="section-body" id="body-pro-tips">
@@ -2859,7 +2866,7 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
   <p class="section-desc">Different outdoor features yield different returns when it comes time to sell. Prioritize features with strong ROI if resale value matters — and know which features are lifestyle investments vs. financial ones.</p>
 <div class="section-preview">A feature-by-feature breakdown of return on investment for Arizona outdoor renovations — which elements add measurable resale value (outdoor kitchen, covered structure, turf) vs. lifestyle value only. Includes current Arizona market data and a framework for prioritizing features based on how long the owner plans to stay in the home.</div>
 <div class="section-collapse-header" onclick="toggleSection('roi')">
-  <span style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▼ expand full section</span>
+  <span id="label-roi" style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">▲ collapse section</span>
   <div class="collapse-toggle" id="btn-roi">▼</div>
 </div>
 <div class="section-body" id="body-roi">
@@ -3211,25 +3218,47 @@ buildGallery('all');
 buildEstimator();
 
 // ── COLLAPSIBLE SECTIONS ──────────────────────────────────────────────────────
+const SECTION_IDS = ['vision','analysis','floorplan','zones','gazebo','firepit','kitchen','turf','lighting','pool','phases','materials','tiers','estimator','retainer','preconstruction','notes','storybook','pro-tips','roi'];
+
+// Track open/closed state separately from CSS
+const sectionState = {};
+SECTION_IDS.forEach(id => sectionState[id] = true); // all start open
+
 function toggleSection(id) {
-  const body = document.getElementById('body-' + id);
-  const btn  = document.getElementById('btn-' + id);
+  const body  = document.getElementById('body-' + id);
+  const btn   = document.getElementById('btn-' + id);
+  const label = document.getElementById('label-' + id);
   if (!body) return;
-  const isOpen = body.classList.contains('open');
-  body.classList.toggle('open', !isOpen);
-  if (btn) btn.classList.toggle('open', !isOpen);
+  sectionState[id] = !sectionState[id];
+  const isOpen = sectionState[id];
+  if (isOpen) {
+    body.classList.remove('collapsed');
+    body.classList.add('open');
+  } else {
+    body.classList.remove('open');
+    body.classList.add('collapsed');
+  }
+  if (btn)   btn.classList.toggle('open', isOpen);
+  if (label) label.textContent = isOpen ? '\u25b2 collapse section' : '\u25bc expand full section';
 }
 
-// Initialize all sections as open on page load
-(function initAllSectionsOpen() {
-  const ids = ['vision','analysis','floorplan','zones','gazebo','firepit','kitchen','turf','lighting','pool','phases','materials','tiers','estimator','retainer','preconstruction','notes','storybook','pro-tips','roi'];
-  ids.forEach(function(id) {
-    const body = document.getElementById('body-' + id);
-    const btn  = document.getElementById('btn-' + id);
-    if (body) body.classList.add('open');
-    if (btn)  btn.classList.add('open');
+// Initialize all sections open on DOM ready
+function initAllOpen() {
+  SECTION_IDS.forEach(function(id) {
+    const body  = document.getElementById('body-' + id);
+    const btn   = document.getElementById('btn-' + id);
+    const label = document.getElementById('label-' + id);
+    if (body)  { body.classList.add('open'); body.classList.remove('collapsed'); }
+    if (btn)   btn.classList.add('open');
+    if (label) label.textContent = '\u25b2 collapse section';
   });
-})();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAllOpen);
+} else {
+  initAllOpen();
+}
 
 </script>
 
