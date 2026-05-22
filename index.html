@@ -248,8 +248,8 @@ tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
 .section-body {
   overflow:hidden;
   transition:max-height .45s cubic-bezier(.4,0,.2,1), opacity .35s ease;
-  max-height:0;
-  opacity:0;
+  max-height:99999px;
+  opacity:1;
 }
 .section-body.open {
   max-height:99999px;
@@ -3217,9 +3217,19 @@ function toggleSection(id) {
   if (!body) return;
   const isOpen = body.classList.contains('open');
   body.classList.toggle('open', !isOpen);
-  btn.classList.toggle('open', !isOpen);
+  if (btn) btn.classList.toggle('open', !isOpen);
 }
-// Nav links: scroll only — sections stay collapsed until user clicks expand
+
+// Initialize all sections as open on page load
+(function initAllSectionsOpen() {
+  const ids = ['vision','analysis','floorplan','zones','gazebo','firepit','kitchen','turf','lighting','pool','phases','materials','tiers','estimator','retainer','preconstruction','notes','storybook','pro-tips','roi'];
+  ids.forEach(function(id) {
+    const body = document.getElementById('body-' + id);
+    const btn  = document.getElementById('btn-' + id);
+    if (body) body.classList.add('open');
+    if (btn)  btn.classList.add('open');
+  });
+})();
 
 </script>
 
